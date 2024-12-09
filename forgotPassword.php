@@ -4,15 +4,15 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hy">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Forgot password page">
-  <meta name="author" content="Admin">
+  <meta name="description" content="Մոռացված գաղտնաբառի էջ">
+  <meta name="author" content="Ադմին">
   <link href="img/logo/attnlg.jpg" rel="icon">
-  <title>Forgot Password</title>
+  <title>Մոռացված գաղտնաբառ</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
@@ -29,14 +29,14 @@ session_start();
                   <div class="text-center">
                     <img src="img/logo/attnlg.jpg" style="width:100px;height:100px">
                     <br><br>
-                    <h1 class="h4 text-gray-900 mb-4">Forgot Password</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Մոռացված գաղտնաբառ</h1>
                   </div>
                   <form class="user" method="POST" action="forgotPassword.php">
                     <div class="form-group">
-                      <input type="email" class="form-control" required name="email" placeholder="Enter Email Address">
+                      <input type="email" class="form-control" required name="email" placeholder="Մուտքագրեք էլ․ հասցեն">
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block" value="Submit" name="submit" />
+                        <input type="submit" class="btn btn-primary btn-block" value="Ուղարկել" name="submit" />
                     </div>
                   </form>
 
@@ -46,7 +46,7 @@ session_start();
 
                       // Validate email format
                       if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                          echo "<div class='alert alert-danger'>Invalid email format.</div>";
+                          echo "<div class='alert alert-danger'>Էլ. հասցեն սխալ է մուտքագրված:</div>";
                       } else {
                           // Prepare the SQL statement to avoid SQL injection
                           $stmt = $conn->prepare("SELECT * FROM tbladmin WHERE emailAddress = ?");
@@ -68,17 +68,17 @@ session_start();
                               $resetLink = "http://localhost/attendance/resetPassword.php?token=" . $token;
 
                               // Send email
-                              $subject = "Password Reset Request";
-                              $message = "Click the following link to reset your password: " . $resetLink;
+                              $subject = "Գաղտնաբառի վերականգնման հարցում";
+                              $message = "Սեղմեք հետևյալ հղումը գաղտնաբառը վերականգնելու համար՝ " . $resetLink;
                               $headers = "From: no-reply@yourwebsite.com";
 
                               if (mail($email, $subject, $message, $headers)) {
-                                  echo "<div class='alert alert-success'>A password reset link has been sent to your email.</div>";
+                                  echo "<div class='alert alert-success'>Վերականգնման հղումը ուղարկվել է ձեր էլ. հասցեին:</div>";
                               } else {
-                                  echo "<div class='alert alert-danger'>Failed to send the reset email.</div>";
+                                  echo "<div class='alert alert-danger'>Չհաջողվեց ուղարկել վերականգնման հղումը:</div>";
                               }
                           } else {
-                              echo "<div class='alert alert-danger'>This email address is not registered.</div>";
+                              echo "<div class='alert alert-danger'>Այս էլ. հասցեն գրանցված չէ:</div>";
                           }
                       }
                   }
@@ -86,8 +86,8 @@ session_start();
 
                   <hr>
                   <div class="text-center">
-                    <a class="font-weight-bold small" href="memberSetup.php">Create a Member Account!</a>
-                    <a class="font-weight-bold small" href="organizationSetup.php">Setup Cooperative Account!</a>
+                    <a class="font-weight-bold small" href="memberSetup.php">Ստեղծել օգտատեր</a>
+                    <a class="font-weight-bold small" href="organizationSetup.php">Ստեղծել կազմակերպություն</a>
                   </div>
                 </div>
               </div>
